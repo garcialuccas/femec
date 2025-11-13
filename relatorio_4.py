@@ -1,11 +1,11 @@
 from math import sqrt, pi
-from statistcs import stdev, mean
+from statistics import stdev, mean
 
 distancias_iniciais = []
 distancias_finais = []
 
 media_distancias_iniciais = mean(distancias_iniciais)
-medias__distancias_finais = mean(distancias_finais)
+medias_distancias_finais = mean(distancias_finais)
 
 desvio_padrao_inicial = stdev(distancias_iniciais)
 desvio_padrao_final = stdev(distancias_finais)
@@ -94,21 +94,21 @@ for linha in range(len(velocidades_iniciais)):
     incertezas_momentos_angulares_iniciais.append(incerteza_momento_angular_inicial)
     
     momento_linear_final = massa_carrinho * velocidades_finais[linha]
-    momentos_angular_final = parafuso_raio * momento_linear_final
+    momento_angular_final = parafuso_raio * momento_linear_final
     
     incerteza_momento_angular_final = sqrt((((parafuso_raio * velocidades_finais[linha]) ** 2) * ((incerteza_carrinho) ** 2)) + (((momento_linear_final) ** 2) * ((incerteza_parametro_impacto) ** 2)) + (((parafuso_raio * massa_carrinho) ** 2) * ((incertezas_velocidades_finais[linha]) ** 2)))
     
     momentos_lineares_finais.append(momento_linear_final)
-    momentos_angulares_finais.append(momentos_angular_final)
+    momentos_angulares_finais.append(momento_angular_final)
     incertezas_momentos_angulares_finais.append(incerteza_momento_angular_final)
     
     print(f" === colisao {linha + 1} ===")
     print(f"momento linear inicial: {round(momento_linear_inicial,  4)}")
     print(f"momento angular inicial: {round(momento_angular_inicial, 4)}")
-    print(f"incerteza momento angular inicial: {round(incerteza_momento_angular_final, 4)}")
+    print(f"incerteza momento angular inicial: {round(incerteza_momento_angular_inicial, 4)}")
     print()
     print(f"momento linear final: {round(momento_linear_final, 4)}")
-    print(f"momento angular final: {round{momento_angular_final, 4)}")
+    print(f"momento angular final: {round(momento_angular_final, 4)}")
     print(f"incerteza momento angular final: {round(incerteza_momento_angular_final, 4)}")
     print()
     
@@ -122,13 +122,13 @@ print(" ===== Tabela 4 =====")
 for linha in range(len(periodo)):
     
     velocidade_angular = (2 * pi) / periodos[linha]
-    incerteza_velocidade_angular = (2 * pi) / (periodos[linha] ** 2) # derivada da velocidade angular em relacao ao periodo, ao quadrado e pela raiz
+    incerteza_velocidade_angular = sqrt((2 * pi) / (periodos[linha] ** 2) * (incerteza_periodo ** 2)) # derivada da velocidade angular em relacao ao periodo ao quadrado, vezes a incerteza ao quadrado e tudo pela raiz
     
     velocidades_angulares.append(velocidade_angular)
     incertezas_velocidades_angulares.append(incerteza_velocidade_angular)
     
     print(f" === colisao {linha + 1}")
-    print(f"periodo: {periodos[linha}")
+    print(f"periodo: {periodos[linha]}")
     print(f"incerteza periodo: {incerteza_periodo}")
     print(f"velocidade angular: {round(velocidade_angular, 4)}")
     print(f"incerteza velocidade angular: {round(incerteza_velocidade_angular, 4)}")
