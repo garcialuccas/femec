@@ -122,7 +122,7 @@ print(" ===== Tabela 4 =====")
 for linha in range(len(periodo)):
     
     velocidade_angular = (2 * pi) / periodos[linha]
-    incerteza_velocidade_angular = sqrt((2 * pi) / (periodos[linha] ** 2) * (incerteza_periodo ** 2)) # derivada da velocidade angular em relacao ao periodo ao quadrado, vezes a incerteza ao quadrado e tudo pela raiz
+    incerteza_velocidade_angular = sqrt(((2 * pi) / (periodos[linha] ** 2) ** 2) * (incerteza_periodo ** 2)) # derivada da velocidade angular em relacao ao periodo ao quadrado, vezes a incerteza ao quadrado e tudo pela raiz
     
     velocidades_angulares.append(velocidade_angular)
     incertezas_velocidades_angulares.append(incerteza_velocidade_angular)
