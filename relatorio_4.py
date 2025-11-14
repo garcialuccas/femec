@@ -122,7 +122,7 @@ print(" ===== Tabela 4 =====")
 for linha in range(len(periodos)):
     
     velocidade_angular = (2 * pi) / periodos[linha]
-    incerteza_velocidade_angular = sqrt(((2 * pi) / (periodos[linha] ** 2) ** 2) * (incerteza_periodo ** 2)) # derivada da velocidade angular em relacao ao periodo ao quadrado, vezes a incerteza ao quadrado e tudo pela raiz
+    incerteza_velocidade_angular = (2 * pi / (periodos[linha] ** 2)) * incerteza_periodo # derivada da velocidade angular em relacao ao periodo ao quadrado, vezes a incerteza ao quadrado e tudo pela raiz
     
     velocidades_angulares.append(velocidade_angular)
     incertezas_velocidades_angulares.append(incerteza_velocidade_angular)
@@ -144,4 +144,25 @@ print(" ===== Tabela 5 =====")
 for linha in range(len(velocidades_angulares)):
 
     massa_disco = (massa_carrinho * parafuso_raio * (velocidades_iniciais[linha] - velocidades_finais[linha]) * periodos[linha]) / (pi * ((diametro_disco / 2) ** 2))
-    incerteza_massa_disco = sqrt()
+
+    incerteza_total_velocidade = sqrt((incertezas_velocidades_iniciais[linha] ** 2) + (incertezas_velocidades_finais[linha] ** 2))
+
+    derivada_velocidade = (massa_carrinho * parafuso_raio * periodos[linha]) / (pi * ((diametro_disco / 2) ** 2))
+
+    derivada_massa_carrinho = (parafuso_raio * (velocidades_iniciais[linha] - velocidades_finais[linha]) * periodos[linha]) / (pi * ((diametro_disco / 2) ** 2))
+
+    derivada_parametro_impacto = (massa_carrinho * (velocidades_iniciais[linha] - velocidades_finais[linha]) * periodos[linha]) / (pi * ((diametro_disco / 2) ** 2))
+
+    derivada_periodo = (massa_carrinho * parafuso_raio * (velocidades_iniciais[linha] - velocidades_finais[linha])) / (pi * ((diametro_disco / 2) ** 2))
+
+    derivada_diametro = (-8 * (massa_carrinho * parafuso_raio * (velocidades_iniciais[linha] - velocidades_finais[linha]) * periodos[linha])) / (pi * (diametro_disco ** 3))
+
+    incerteza_massa_disco = sqrt(((derivada_velocidade ** 2) * (incerteza_total_velocidade ** 2)) + ((derivada_diametro ** 2) * (incerteza_diametro ** 2)) + ((derivada_massa_carrinho ** 2) * (incerteza_carrinho ** 2)) + ((derivada_periodo ** 2) * (incerteza_periodo ** 2)) + ((derivada_periodo ** 2) * (incerteza_parametro_impacto ** 2)))
+
+    massas_disco.append(massa_disco)
+    incertezas_massas_disco.append(incerteza_massa_disco)
+
+    print(f" === colisao {linha + 1} ===")
+    print(f"massa do disco: {round(massa_disco, 4)}")
+    print(f"incerteza massa disco: {round(incerteza_massa_disco, 4)}")
+    print()
