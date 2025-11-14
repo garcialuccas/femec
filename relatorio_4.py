@@ -17,7 +17,7 @@ incerteza_distancia_inicial = sqrt((incerteza_estatistica_inicial ** 2) + (0.05 
 incerteza_distancia_final = sqrt((incerteza_estatistica_final ** 2) + (0.05 ** 2))
 
 print(" ===== Tabela 1 =====")
-print(f"media inicial: {round(medias__distancias_iniciais, 4)}")
+print(f"media inicial: {round(media_distancias_iniciais, 4)}")
 print(f"desvio padrao inicial: {round(desvio_padrao_inicial, 4)}")
 print(f"incerteza estatistica inicial: {round(incerteza_estatistica_inicial, 4)}")
 print(f"incerteza inicial total: {round(incerteza_distancia_inicial, 4)}")
@@ -25,10 +25,10 @@ print()
 print(f"media final: {round(medias_distancias_finais, 4)}")
 print(f"desvio padrao final: {round(desvio_padrao_final, 4)}")
 print(f"incerteza estatistica final: {round(incerteza_estatistica_final, 4)}")
-print(f"incerteza final total: {round(inceteza_distancia_final, 4)}")
+print(f"incerteza final total: {round(incerteza_distancia_final, 4)}")
 print()
 
-tempos_inicias = [0.592, 0.795, 0.651]
+tempos_iniciais = [0.592, 0.795, 0.651]
 tempos_finais = [0.775, 0.976, 0.793]
 incerteza_instrumental_tempo = 0.001
 
@@ -43,8 +43,8 @@ for linha in range(len(tempos_iniciais)):
     
     delta_t_inicial = tempos_iniciais[linha]
     
-    velocidade_inicial = medias_distancias_iniciais / delta_t_inicial
-    incerteza_velocidade_inicial = sqrt((((1 / delta_t_inicial) ** 2) * ((incerteza_distancia_inicial) ** 2)) + (((medias_distancias_iniciais / (delta_t_inicial ** 2)) ** 2) * (incerteza_instrumental_tempo ** 2)))
+    velocidade_inicial = media_distancias_iniciais / delta_t_inicial
+    incerteza_velocidade_inicial = sqrt((((1 / delta_t_inicial) ** 2) * ((incerteza_distancia_inicial) ** 2)) + (((media_distancias_iniciais / (delta_t_inicial ** 2)) ** 2) * (incerteza_instrumental_tempo ** 2)))
 
     velocidades_iniciais.append(velocidade_inicial)
     incertezas_velocidades_iniciais.append(incerteza_velocidade_inicial)
@@ -119,7 +119,7 @@ incertezas_velocidades_angulares = []
 
 print(" ===== Tabela 4 =====")
 
-for linha in range(len(periodo)):
+for linha in range(len(periodos)):
     
     velocidade_angular = (2 * pi) / periodos[linha]
     incerteza_velocidade_angular = sqrt(((2 * pi) / (periodos[linha] ** 2) ** 2) * (incerteza_periodo ** 2)) # derivada da velocidade angular em relacao ao periodo ao quadrado, vezes a incerteza ao quadrado e tudo pela raiz
@@ -129,6 +129,19 @@ for linha in range(len(periodo)):
     
     print(f" === colisao {linha + 1}")
     print(f"periodo: {periodos[linha]}")
-    print(f"incerteza periodo: {incerteza_periodo}")
+    print(f"incerteza periodo: {round(incerteza_periodo, 4)}")
     print(f"velocidade angular: {round(velocidade_angular, 4)}")
     print(f"incerteza velocidade angular: {round(incerteza_velocidade_angular, 4)}")
+    print()
+
+massas_disco = []
+incertezas_massas_disco = []
+diametro_disco = 11
+incerteza_diametro = 0.05
+
+print(" ===== Tabela 5 =====")
+
+for linha in range(len(velocidades_angulares)):
+
+    massa_disco = (massa_carrinho * parafuso_raio * (velocidades_iniciais[linha] - velocidades_finais[linha]) * periodos[linha]) / (pi * ((diametro_disco / 2) ** 2))
+    incerteza_massa_disco = sqrt()
