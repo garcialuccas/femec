@@ -112,8 +112,8 @@ for linha in range(len(velocidades_iniciais)):
     print(f"incerteza momento angular final: {round(incerteza_momento_angular_final, 4)}")
     print()
     
-periodos= [] # tempo em segundos de uma volta do disco, medido a partir do video
-incerteza_periodo = 0.005 # metade da menor medida do cronometro
+periodos= [2.43 - 1.12, 2.89 - 1.39, 3.87 - 1.84] # tempo em segundos de uma volta do disco, medido a partir do video
+incerteza_periodo = 1 / 120 # metade da menor medida do frame rate do video
 velocidades_angulares = []
 incertezas_velocidades_angulares = []
 
