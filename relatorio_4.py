@@ -1,8 +1,8 @@
 from math import sqrt, pi
 from statistics import stdev, mean
 
-distancias_iniciais = []
-distancias_finais = []
+distancias_iniciais = [18.6, 15.1, 17.8]
+distancias_finais = [15.7, 12.1, 14.4]
 
 media_distancias_iniciais = mean(distancias_iniciais)
 medias_distancias_finais = mean(distancias_finais)
@@ -28,8 +28,8 @@ print(f"incerteza estatistica final: {round(incerteza_estatistica_final, 4)}")
 print(f"incerteza final total: {round(inceteza_distancia_final, 4)}")
 print()
 
-tempos_inicias = [[], [], []]
-tempos_finais = [[], [], []]
+tempos_inicias = [0.592, 0.795, 0.651]
+tempos_finais = [0.775, 0.976, 0.793]
 incerteza_instrumental_tempo = 0.001
 
 velocidades_iniciais = []
@@ -69,10 +69,10 @@ for linha in range(len(tempos_iniciais)):
 
 print(" ===== Tabela 3 =====")
 
-parafuso_raio = 0.0 # parametro de impacto
+parafuso_raio = 6 # parametro de impacto
 incerteza_parametro_impacto = 0.05 # incerteza da regua
-massa_carrinho = 0.0 / 1000 # em quilogramas
-incerteza_carrinho = 0.0 / 1000 # em quilogramas
+massa_carrinho = 112.72 / 1000 # em quilogramas
+incerteza_carrinho = 0.1 / 1000 # em quilogramas
 
 momentos_lineares_iniciais = []
 momentos_angulares_iniciais = []
